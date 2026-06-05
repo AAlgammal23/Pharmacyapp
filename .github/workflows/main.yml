@@ -1,9 +1,9 @@
-name: Flutter Build APK & AAB
+name: Flutter CI Build
 
 on:
   push:
-    tags:
-      - 'v*'   # يبني عند رفع إصدار جديد مثل v1.0.0
+    branches:
+      - main   # يبني عند أي Push للفرع main
 
 jobs:
   build:
@@ -20,6 +20,9 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Run tests
+        run: flutter test
 
       - name: Build APK
         run: flutter build apk --release
